@@ -1,0 +1,28 @@
+    .sidebar a.sidebar-new-btn {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: var(--dark-blue);
+    }
+    .sidebar a.sidebar-new-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* spacing between icon and text */
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 8px;
+  background: var(--lighter-blue);
+  color: var(--dark-blue);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  text-decoration: none; /* removes underline */
+  
+  transition: background 0.2s;
+}
+
+.sidebar a.sidebar-new-btn:hover {
+  background: #b3d9ff;
+  text-decoration: none;
+}
+

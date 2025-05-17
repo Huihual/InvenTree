@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Inventory List - InvenTree</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/back.css" />
+  <style>
+    :root {
+      --blue: #007bff;
+      --light-blue: #f5faff;
+      --dark-blue: #003366;
+      --card-bg: #fff;
+      --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      --danger: #dc3545;
+      --edit: #28a745;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: var(--light-blue);
+      color: #333;
+    }
+
+    .topbar {
+      background: var(--blue);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .topbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .topbar .icons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .icon {
+      background: white;
+      color: var(--blue);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: white;
+      padding: 1.5rem 1rem;
+      box-shadow: var(--shadow);
+      height: calc(100vh - 64px);
+    }
+
+    .sidebar h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--dark-blue);
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar li {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+
+    .sidebar li:hover,
+    .sidebar li.active {
+      background-color: var(--light-blue);
+      font-weight: bold;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    h2 {
+      color: var(--dark-blue);
+      margin-bottom: 1rem;
+    }
+
+    .filters-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filters-bar input,
+    .filters-bar select {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .filters-bar button.save-btn {
+      background: #0077cc;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 0.5rem;
+      
+    }
+
+    .add-custom-item {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .add-custom-item h3 {
+      margin-top: 0;
+    }
+
+    .add-custom-item .field-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .add-custom-item input,
+    .add-custom-item select {
+      padding: 0.4rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .add-custom-item button {
+      background: #0077cc;
+      color: white;
+      padding: 0.45rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .item-card {
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .item-card .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item-card .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .item-card button.qty-btn {
+      padding: 0.2rem 0.6rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      background: #eee;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .item-card .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+
+    .item-card .actions .fa-trash {
+      color: var(--danger);
+    }
+
+    .item-card .actions .fa-edit {
+      color: var(--edit);
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">InvenTree</div>
+    <div class="icons">
+      <div class="icon" onclick="location.href='alerts.html'" title="Notifications">
+        <i class="fas fa-bell"></i>
+      </div>
+      <div class="icon">U</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <h3>My Lists</h3>
+      <ul>
+        <li class="active">Pantry List</li>
+        <li>Cleaning Supplies</li>
+        <li>Toiletries</li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <h2>Pantry List</h2>
+
+      <div class="filters-bar">
+        <input type="text" placeholder="Search items..." />
+        <select>
+          <option>All Categories</option>
+          <option>Kitchen</option>
+          <option>Bathroom</option>
+          <option>Cleaning</option>
+        </select>
+        <button class="save-btn">Save Changes</button>
+        <button class="back-btn" onclick="location.href='dashboard.html'">Back to Dashboard</button>
+      </div>
+
+      <div class="add-custom-item">
+        <h3>Add Custom Item</h3>
+        <div class="field-group">
+          <input type="text" placeholder="Item name" />
+          <input type="number" placeholder="Quantity" />
+          <input type="text" placeholder="Unit" />
+          <input type="date" placeholder="Expires" />
+          <input type="text" placeholder="Price" />
+          <input type="text" placeholder="Notes" />
+          <input type="file" placeholder="Picture" />
+          <select>
+            <option value="">Select Category</option>
+            <option>Kitchen</option>
+            <option>Bathroom</option>
+            <option>Cleaning</option>
+          </select>
+          <button>Add</button>
+        </div>
+      </div>
+
+      <div class="items-grid">
+        <div class="item-card">
+          <div class="top-row">
+            <strong>Toilet Paper</strong>
+            <span class="category">Bathroom</span>
+          </div>
+          <div class="quantity-controls">
+            <button class="qty-btn">-</button>
+            <span>2</span>
+            <button class="qty-btn">+</button>
+          </div>
+          <div>Unit: rolls</div>
+          <div>Expires: 2025-06-30</div>
+          <div>Price: $4.99</div>
+          <div>Notes: Essential for guest bathroom</div>
+          <div>Picture: <em>[No Image Uploaded]</em></div>
+          <div class="actions">
+            <i class="fas fa-trash" title="Delete"></i>
+            <i class="fas fa-edit" title="Edit"></i>
+          </div>
+        </div>
+
+        <div class="item-card">
+          <div class="top-row">
+            <strong>Dish Soap</strong>
+            <span class="category">Kitchen</span>
+          </div>
+          <div class="quantity-controls">
+            <button class="qty-btn">-</button>
+            <span>1</span>
+            <button class="qty-btn">+</button>
+          </div>
+          <div>Unit: bottle</div>
+          <div>Expires: 2025-07-10</div>
+          <div>Price: $2.99</div>
+          <div>Notes: Lemon scent</div>
+          <div>Picture: <em>[No Image Uploaded]</em></div>
+          <div class="actions">
+            <i class="fas fa-trash" title="Delete"></i>
+            <i class="fas fa-edit" title="Edit"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="main-content">
+  <h2 id="list-title">Inventory List</h2>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const list = params.get("list");
+
+  const formattedName = {
+    pantry: "Pantry List",
+    cleaning: "Cleaning Supplies",
+    toiletries: "Toiletries"
+  };
+
+  if (list && formattedName[list]) {
+    document.getElementById("list-title").textContent = formattedName[list];
+  }
+</script>
+</body>
+</html>
+
+

@@ -14,6 +14,8 @@
       --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       --low-stock-color: #e74c3c;
       --expiring-color: #f39c12;
+      --danger: #dc3545;
+      --edit: #28a745;
     }
 
     body {
@@ -78,7 +80,7 @@
       padding: 0.5rem 1rem;
       border: none;
       border-radius: 6px;
-      background: var(--blue);
+      background: #0077cc;
       color: white;
       cursor: pointer;
     }
@@ -147,16 +149,19 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
-    .edit-btn {
-      background-color: #28a745;
-      color: white;
+    .item-card .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+.item-card .actions .fa-trash {
+      color: var(--danger);
     }
 
-    .delete-btn {
-      background-color: #dc3545;
-      color: white;
+    .item-card .actions .fa-edit {
+      color: var(--edit);
     }
+
   </style>
 </head>
 <body>
@@ -199,8 +204,8 @@
           <div><strong>Notes:</strong> Add to shopping list</div>
         </div>
         <div class="actions">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
+            <i class="fas fa-trash" title="Delete"></i>
+            <i class="fas fa-edit" title="Edit"></i>
         </div>
       </div>
 
@@ -218,8 +223,8 @@
           <div><strong>Notes:</strong> Use soon</div>
         </div>
         <div class="actions">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
+        <i class="fas fa-trash" title="Delete"></i>
+        <i class="fas fa-edit" title="Edit"></i>
         </div>
       </div>
     </div>

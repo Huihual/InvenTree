@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   
   <link rel="stylesheet" href="css/viewbutton.css" />
+  <link rel="stylesheet" href="css/sidebarbutton.css" />
+
   <style>
     :root {
       --blue: #007bff;
@@ -110,8 +112,7 @@
     }
 
     .inventory-list-nav button:hover {
-      background: var(--blue);
-      color: #fff;
+      background:  #b3d9ff;
     }
 
     .quick-actions-sidebar h2 {
@@ -260,9 +261,9 @@
           <div class="overview-line"><span>Total Lists</span><span>3</span></div>
           <div class="overview-line" style="border-bottom: 2px solid #ccc;"></div>
           <div class="overview-line"><strong>By Category</strong></div>
-          <div class="overview-line"><span>Kitchen</span><span>15</span></div>
-          <div class="overview-line"><span>Bathroom</span><span>12</span></div>
-          <div class="overview-line"><span>Pantry</span><span>15</span></div>
+          <div class="overview-line"><span>Panty List</span><span>15</span></div>
+          <div class="overview-line"><span>Cleaning Supplies</span><span>12</span></div>
+          <div class="overview-line"><span>Toiletries</span><span>15</span></div>
         </div>
 
         <div class="sticky-card">
@@ -283,15 +284,19 @@
     <div class="sidebar">
       <div class="quick-actions-sidebar">
         <h2>Quick Actions</h2>
-        <button><i class="fas fa-plus"></i> Create New List</button>
+        <a href="newlist.html" class="sidebar-new-btn">
+  <i class="fas fa-plus"></i> New List
+</a>
+
         <button><i class="fas fa-cart-shopping"></i> Create Shopping List</button>
-      </div>
       <h2>Your Lists</h2>
       <div class="inventory-list-nav">
-        <button>Kitchen Supplies</button>
-        <button>Bathroom Items</button>
-        <button>Pantry</button>
-        <button>+ New List</button>
+        <button onclick="location.href='inventory.html?list=pantry'">Pantry List</button>
+        <button onclick="location.href='inventory.html?list=cleaning'">Cleaning Supplies</button>
+        <button onclick="location.href='inventory.html?list=toiletries'">Toiletries</button>
+
+
+        
       </div>
     </div>
   </div>
@@ -304,6 +309,8 @@
       localStorage.removeItem("username");
       window.location.href = "index.html";
     }
+
+    
   </script>
 </body>
 </html>
