@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet"href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InvenTree - Login</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 <body>
-    <h1 class="title">Welcome to my blog</h1>
-    <h3 class="title" id="important">Written by Preshant</h3>
-    <h3>Date: 1 Jan 2024</h3>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <h1 class="app-title">InvenTree</h1>
+      <p class="tagline">Know what you need, before you need it.</p>
+
+      <h2 class="welcome-msg">Welcome Back</h2>
+      <p class="sub-msg">Log in to manage your household inventory</p>
+
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <button type="submit">Log In</button>
+      </form>
+
+      <p class="signup-text">New here? <a href="signup.html">Sign up</a></p>
+    </div>
+  </div>
+
+  <script src="js/login.js"></script>
 </body>
 </html>

@@ -1,3 +1,10 @@
 {
-    "liveServer.settings.port": 5504
+  "liveServer.settings.root": "/",
+  "liveServer.settings.useLocalIp": false,
+  "liveServer.settings.ignoreFiles": [
+    "**/*.scss",
+    "**/*.ts"
+  ],
+  "liveServer.settings.wait": 500,
+  "liveServer.settings.port": 5501
 }
