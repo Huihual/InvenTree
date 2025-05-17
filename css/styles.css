@@ -9,11 +9,12 @@
 body {
   height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #f2f8fc; /* very light blue */
+  background: #f2f8fc;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 /* Login Card Container */
 .login-wrapper {
@@ -106,44 +107,15 @@ button:hover {
   text-decoration: underline;
 }
 
-.view-link {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 0.95rem;
-  color: #0077cc; /* Matches your button blue */
-  text-decoration: none;
-  font-weight: 500;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: background-color 0.2s ease, text-decoration 0.2s ease;
-}
 
-.view-link:hover {
-  background-color: #e6f2fc; /* Light blue hover background */
-  text-decoration: underline;
-}
 
-.view-button {
-  display: inline-block;
-  margin-top: 16px;
-  background-color: #0077cc;
-  color: #ffffff;
-  font-size: 0.95rem;
-  padding: 0.5rem 1.2rem;
-  border-radius: 8px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
 
-.view-button:hover {
-  background-color: #005fa3;
-}
 
-/* To center the button under alerts */
-.sticky-card .view-button {
-  display: block;
-  margin: 1.5rem auto 0 auto;
-}
+
+
+
+
+
+
+
 

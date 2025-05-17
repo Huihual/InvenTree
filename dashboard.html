@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>InvenTree Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
+  <link rel="stylesheet" href="css/viewbutton.css" />
   <style>
     :root {
       --blue: #007bff;
@@ -237,7 +239,10 @@
   <div class="topbar">
     <div class="logo">InvenTree</div>
     <div class="icons">
-      <div class="icon" title="Notifications"><i class="fas fa-bell"></i></div>
+      <div class="icon notification-bell" title="Notifications" onclick="location.href='alerts.html'">
+  <i class="fas fa-bell"></i>
+  <span class="badge">2</span>
+</div>
       <div class="icon" id="userInitial">U</div>
       <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
     </div>
@@ -265,7 +270,12 @@
           <p>Items requiring attention</p>
           <div class="overview-line"><span><i class="fas fa-triangle-exclamation"></i> Low Stock</span><span>2</span></div>
           <div class="overview-line"><span><i class="fas fa-hourglass-half"></i> Expiring Soon</span><span>2</span></div>
-          <a href="alerts.html" class="view-link view-button">View All Items</a>
+          
+          <form action="alerts.html">
+  <button type="submit" class="view-button">View All Items</button>
+</form>
+
+
         </div>
       </div>
     </div>

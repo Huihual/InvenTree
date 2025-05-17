@@ -1,0 +1,19 @@
+.filters-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5rem 0 1.5rem; /* Added top margin */
+  padding: 0 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.alerts-title {
+  font-size: 1.8rem;
+  color: #003366;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+
+
