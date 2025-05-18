@@ -1,25 +1,16 @@
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
+document.getElementById('loginForm').addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+  const username = document.getElementById('username').value.trim();
 
-  try {
-    const response = await fetch('https://your-backend-url.com/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
+  if (username !== "") {
+    // You can store the username if needed for later pages
+    localStorage.setItem("username", username);
 
-    const data = await response.json();
-    
-    if (response.ok) {
-      // Redirect to dashboard or save token
-      window.location.href = 'dashboard.html';
-    } else {
-      alert(data.message || 'Login failed');
-    }
-  } catch (err) {
-    console.error('Error logging in:', err);
+    // Redirect to dashboard.html
+    window.location.href = 'dashboard.html';
+  } else {
+    alert("Please enter a username.");
   }
 });
+
