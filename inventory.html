@@ -219,6 +219,25 @@
     .item-card .actions .fa-edit {
       color: var(--edit);
     }
+
+    .logout-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    
+    .badge {
+      background: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      position: absolute;
+      transform: translate(10px, -10px);
+    }
+
   </style>
 </head>
 <body>
@@ -227,8 +246,14 @@
     <div class="icons">
       <div class="icon" onclick="location.href='alerts.html'" title="Notifications">
         <i class="fas fa-bell"></i>
+	<span class="badge">2</span>
       </div>
+       <div class="icon" title="Settings" onclick="location.href='setting.html'">
+    <i class="fas fa-cog"></i>
+  </div>
       <div class="icon">U</div>
+      <button class="logout-btn" onclick="logout()" title="Log out"><i class="fas fa-sign-out-alt"></i></button>
+
     </div>
   </div>
 

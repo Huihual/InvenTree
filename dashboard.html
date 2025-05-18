@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>InvenTree Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  
   <link rel="stylesheet" href="css/viewbutton.css" />
   <link rel="stylesheet" href="css/sidebarbutton.css" />
 
@@ -234,19 +233,34 @@
       font-size: 1.1rem;
       color: var(--dark-blue);
     }
+
+    .badge {
+      background: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      position: absolute;
+      transform: translate(10px, -10px);
+    }
+
   </style>
 </head>
 <body>
   <div class="topbar">
     <div class="logo">InvenTree</div>
     <div class="icons">
-      <div class="icon notification-bell" title="Notifications" onclick="location.href='alerts.html'">
-  <i class="fas fa-bell"></i>
-  <span class="badge">2</span>
+  <div class="icon notification-bell" title="Notifications" onclick="location.href='alerts.html'">
+    <i class="fas fa-bell"></i>
+    <span class="badge">2</span>
+  </div>
+  <div class="icon" title="Settings" onclick="location.href='setting.html'">
+    <i class="fas fa-cog"></i>
+  </div>
+  <div class="icon" id="userInitial" title="Profile">U</div>
+  <button class="logout-btn" onclick="logout()" title="Log out"><i class="fas fa-sign-out-alt"></i></button>
 </div>
-      <div class="icon" id="userInitial">U</div>
-      <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
-    </div>
+
   </div>
 
   <div class="main">
@@ -271,12 +285,9 @@
           <p>Items requiring attention</p>
           <div class="overview-line"><span><i class="fas fa-triangle-exclamation"></i> Low Stock</span><span>2</span></div>
           <div class="overview-line"><span><i class="fas fa-hourglass-half"></i> Expiring Soon</span><span>2</span></div>
-          
           <form action="alerts.html">
-  <button type="submit" class="view-button">View All Items</button>
-</form>
-
-
+            <button type="submit" class="view-button">View All Items</button>
+          </form>
         </div>
       </div>
     </div>
@@ -285,18 +296,23 @@
       <div class="quick-actions-sidebar">
         <h2>Quick Actions</h2>
         <a href="newlist.html" class="sidebar-new-btn">
-  <i class="fas fa-plus"></i> New List
-</a>
-
+          <i class="fas fa-plus"></i> New List
+        </a>
         <button><i class="fas fa-cart-shopping"></i> Create Shopping List</button>
-      <h2>Your Lists</h2>
-      <div class="inventory-list-nav">
-        <button onclick="location.href='inventory.html?list=pantry'">Pantry List</button>
-        <button onclick="location.href='inventory.html?list=cleaning'">Cleaning Supplies</button>
-        <button onclick="location.href='inventory.html?list=toiletries'">Toiletries</button>
 
+        <h2>Your Inventory Lists</h2>
+        <div class="inventory-list-nav">
+          <button onclick="location.href='inventory.html?list=pantry'">Pantry List</button>
+          <button onclick="location.href='inventory.html?list=cleaning'">Cleaning Supplies</button>
+          <button onclick="location.href='inventory.html?list=toiletries'">Toiletries</button>
+        </div>
 
-        
+        <h2>Your Shopping Lists</h2>
+        <div class="inventory-list-nav">
+          <button onclick="location.href='createdshopping.html?list=weekly'">Weekly Groceries</button>
+          <button onclick="location.href='createdshopping.html?list=party'">Party Prep</button>
+          <button onclick="location.href='createdshopping.html?list=bulk'">Bulk Restock</button>
+        </div>
       </div>
     </div>
   </div>
@@ -309,8 +325,6 @@
       localStorage.removeItem("username");
       window.location.href = "index.html";
     }
-
-    
   </script>
 </body>
 </html>
