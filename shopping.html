@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create New Shopping List - InvenTree</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/back.css" />
+  <style>
+    :root {
+      --blue: #007bff;
+      --light-blue: #f5faff;
+      --dark-blue: #003366;
+      --card-bg: #fff;
+      --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: var(--light-blue);
+      color: #333;
+    }
+
+    .topbar {
+      background: var(--blue);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .topbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .topbar .icons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .icon {
+      background: white;
+      color: var(--blue);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    h2 {
+      color: var(--dark-blue);
+      margin-bottom: 1rem;
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .back-btn {
+      padding: 0.5rem 0.8rem;
+      background: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .filters-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+
+    .filters-bar input,
+    .filters-bar select {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      width: 250px;
+    }
+
+    .add-custom-item {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #fff;
+      max-width: 100%;
+    }
+
+    .add-custom-item h3 {
+      margin: 0 0 0.5rem 0;
+    }
+
+    .add-custom-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .add-custom-row input {
+      flex: 1;
+      padding: 0.4rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .add-custom-row button {
+      background: #0077cc;
+      color: white;
+      padding: 0.45rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .item-card {
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+    }
+
+    .item-card label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+    }
+
+    .quantity-control button {
+      padding: 2px 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      background: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .quantity {
+      width: 30px;
+      text-align: center;
+      border: none;
+      background: transparent;
+    }
+
+    .delete-icon {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      color: red;
+      cursor: pointer;
+    }
+
+    .list-form {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-width: 320px;
+    }
+
+    .list-form input {
+      padding: 0.4rem 0.6rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 250px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .list-form button {
+      padding: 0.5rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      background: #0077cc;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    .share-icon {
+      color: #0077cc;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">InvenTree</div>
+    <div class="icons">
+      <div class="icon" onclick="location.href='alerts.html'" title="Notifications">
+        <i class="fas fa-bell"></i>
+      </div>
+      <div class="icon">U</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="top-actions">
+      <h2>Create New Shopping List</h2>
+      <button class="back-btn" onclick="location.href='dashboard.html'">Back to Dashboard</button>
+    </div>
+
+    <div class="filters-bar">
+      <input type="text" placeholder="Search items..." />
+      <select>
+        <option value="">All Categories</option>
+        <option>Kitchen</option>
+        <option>Bathroom</option>
+        <option>Cleaning</option>
+      </select>
+      <select>
+        <option value="">Import from Existing List</option>
+        <option>Kitchen Essentials</option>
+        <option>Bathroom Supplies</option>
+      </select>
+      <select>
+        <option value="">Import from Expiry/Low Stock List</option>
+        <option>Low Stock</option>
+        <option>Expiring Soon</option>
+      </select>
+    </div>
+
+    <div class="add-custom-item">
+      <h3>Add Custom Item</h3>
+      <div class="add-custom-row">
+        <input type="text" id="customItemName" placeholder="Item name" />
+        <button type="button" onclick="addCustomItem()">Add</button>
+      </div>
+    </div>
+
+    <div class="items-grid" id="itemsGrid">
+      <div class="item-card">
+        <label><input type="checkbox" /> Eggs</label>
+        <div class="quantity-control">
+          <button onclick="decreaseQty(this)">-</button>
+          <input class="quantity" type="text" value="1" readonly />
+          <button onclick="increaseQty(this)">+</button>
+          <span>pcs</span>
+        </div>
+        <i class="fas fa-trash delete-icon" onclick="removeItem(this)"></i>
+      </div>
+      <div class="item-card">
+        <label><input type="checkbox" /> Milk</label>
+        <div class="quantity-control">
+          <button onclick="decreaseQty(this)">-</button>
+          <input class="quantity" type="text" value="2" readonly />
+          <button onclick="increaseQty(this)">+</button>
+          <span>pcs</span>
+        </div>
+        <i class="fas fa-trash delete-icon" onclick="removeItem(this)"></i>
+      </div>
+      <div class="item-card">
+        <label><input type="checkbox" /> Bread</label>
+        <div class="quantity-control">
+          <button onclick="decreaseQty(this)">-</button>
+          <input class="quantity" type="text" value="1" readonly />
+          <button onclick="increaseQty(this)">+</button>
+          <span>pcs</span>
+        </div>
+        <i class="fas fa-trash delete-icon" onclick="removeItem(this)"></i>
+      </div>
+    </div>
+
+    <form class="list-form">
+      <input type="text" placeholder="List Name" required />
+      <div class="form-actions">
+        <button type="submit">Save</button>
+        <i class="fas fa-share-from-square share-icon" title="Share List"></i>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function addCustomItem() {
+      const name = document.getElementById("customItemName").value.trim();
+      if (!name) {
+        alert("Please enter an item name.");
+        return;
+      }
+
+      const itemCard = document.createElement("div");
+      itemCard.className = "item-card";
+      itemCard.innerHTML = `
+        <label><input type="checkbox" /> ${name}</label>
+        <div class="quantity-control">
+          <button onclick="decreaseQty(this)">-</button>
+          <input class="quantity" type="text" value="1" readonly />
+          <button onclick="increaseQty(this)">+</button>
+          <span>pcs</span>
+        </div>
+        <i class="fas fa-trash delete-icon" onclick="removeItem(this)"></i>
+      `;
+
+      document.getElementById("itemsGrid").appendChild(itemCard);
+      document.getElementById("customItemName").value = "";
+    }
+
+    function increaseQty(btn) {
+      const input = btn.parentElement.querySelector('.quantity');
+      input.value = parseInt(input.value) + 1;
+    }
+
+    function decreaseQty(btn) {
+      const input = btn.parentElement.querySelector('.quantity');
+      if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+      }
+    }
+
+    function removeItem(icon) {
+      const card = icon.closest('.item-card');
+      card.remove();
+    }
+  </script>
+</body>
+</html>
