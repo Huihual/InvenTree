@@ -8,7 +8,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-BQ2P16E8DV');
 </script>
 
@@ -27,15 +26,27 @@
       <p class="sub-msg">Log in to manage your household inventory</p>
 
       <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" required />
+        <input type="text" id="username" name="username" placeholder="Username" required />
         <button type="submit">Log In</button>
       </form>
-      
-      
+
       <p class="signup-text">New here? <a href="signup.html">Sign up</a></p>
     </div>
   </div>
 
+  <!-- Moved footer outside of login-wrapper -->
+  <footer class="disclaimer">
+    <p>
+      <strong>Disclaimer:</strong> This website is created for learning purposes only.
+      The information provided here should not be considered professional advice.
+      Please note that we make no guarantees regarding the accuracy, completeness,
+      or reliability of the contents of this website. Any actions you take based on
+      the contents of this website are at your own risk. We are not liable for any
+      losses or damages incurred from the use of this website.
+    </p>
+  </footer>
+
   <script src="js/script.js"></script>
 </body>
 </html>
+
